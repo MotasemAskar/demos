@@ -24,22 +24,28 @@ directories, news articles, commercial registry pages.
 - Note the source URL for every contact field.
 
 ## 3. Building a demo (top 3 leads of the week)
-Style reference — Motasem's live client sites: https://www.asfourmasterbatch.com/ , https://newtonplastic.com/ , https://jathwa.org/
-- One self-contained `/<slug>/index.html` (inline CSS/JS, no build step). slug = lowercase-latin-company-name.
-- Deep-navy B2B look (around #0a2350), clean sans-serif, generous spacing, real hierarchy (eyebrow → H1 → body).
-- Arabic first (`dir="rtl"`, Arabic UI font such as IBM Plex Sans Arabic / Tajawal from Google Fonts) with an English toggle if the business works in English.
-- Sections: header (logo/name + "اطلب عرض سعر"), hero (clear promise + 2 CTAs + fact tiles), why us (4 cards),
-  services/products grid, process (numbered steps), work/clients or projects, closing CTA, footer (phone, email, address, map link),
-  floating WhatsApp button.
-- Content comes from the business's own public info. **Do not invent numbers, years, client names or certifications.**
-  Where a fact is unknown, write copy without a number (e.g. "خبرة طويلة في…"), never a fake stat.
-- Images: neutral stock-style placeholders (gradients/abstract shapes or Unsplash-hotlink of generic industry scenes);
-  do not copy photos from their social accounts.
-- Add a small fixed banner: `نسخة تجريبية مقترحة — صُممت بواسطة motasem.ai` and `<meta name="robots" content="noindex,nofollow">`.
-- Must look excellent on mobile. Check it renders (open the HTML, no console errors) before pushing.
+Motasem's real client sites (Asfour, Newton, Masafat, Alwan Al-Naseej, Golden Birds) are all built the SAME way —
+copy that pattern, never a one-page template. The reference implementation lives in this repo:
+`sources/al-majeed-plastic/` (read its CLAUDE.md first).
+- Stack: Astro 5 + Tailwind 4, fully static. English at `/`, Arabic RTL mirror at `/ar/`; one view per page in
+  `src/views/*.astro` with all copy in a `{ en, ar }[lang]` object; contact data + verified facts in `src/config.ts`;
+  product/service data in `src/data/*.ts`.
+- 5–6 real pages per company, chosen from what makes THAT business special (e.g. a factory: Products, Mould
+  making / Manufacturing, Quality, About, Contact; a contractor: Services, Projects, About, Contact).
+- Its own identity per company: palette, monogram + wordmark (`public/brand/monogram.svg`, `Logo.astro`), a
+  decorative pattern drawn from their product (bottles, granules, roads…), and at least one custom component
+  (route map, process flow, colour range…). Copy must name their real products, markets and strengths.
+- RFQ form adapted to what they sell (fields a buyer of that product would fill). WhatsApp only if published.
+- Facts from public sources only — list them at the top of `src/config.ts`. No invented numbers/years/clients/certs.
+- Images: AI images per slot (no text, no logos, no faces — see `reference/image-prompts.md`); until they exist,
+  `npm run placeholders -- --force` makes branded stand-in art.
+- Demo extras: `noindex`, robots Disallow, and the bottom ribbon «نسخة تجريبية مقترحة — صُممت بواسطة motasem.ai».
+- Build with `npm run build:pages` (rebases paths to `/demos/<slug>`), copy `dist/` to `/<slug>/`, source to
+  `sources/<slug>/` (no node_modules/dist). Screenshot EN+AR at 1440 and 390 px before pushing.
 
 ## 4. Publish
-- Commit each demo as `demo: <slug>` and push to `main`. Root `index.html` stays a neutral page (no list of prospects).
+- Commit each demo as `demo: <slug>` and push to `main`. Keep `.nojekyll` at the root (Jekyll drops `_astro/`).
+  Root `index.html` stays a neutral page (no list of prospects).
 
 ## 5. Record in the leads sheet
 Claude Sheet «عملاء محتملين»: https://claude.ai/artifact/62EVTgJaetfGibWsjgf6PF (Claude Docs connector; call `guide` topic.sheets first).
