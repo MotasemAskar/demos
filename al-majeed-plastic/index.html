@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>المجيد للصناعات البلاستيكية — نسخة تجريبية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a2350;--navy2:#07193b;--ink:#13203a;--mute:#5b6780;--line:#e3e8f1;--bg:#f6f8fc;--acc:#1fa6a0;--r:14px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"IBM Plex Sans Arabic","Inter",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.7;-webkit-font-smoothing:antialiased}
+html[lang=en] body{font-family:"Inter","IBM Plex Sans Arabic",system-ui,sans-serif}
+a{color:inherit;text-decoration:none}img{max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.demo{position:fixed;bottom:0;inset-inline:0;z-index:60;background:#111827;color:#e5e7eb;font-size:12.5px;text-align:center;padding:6px 10px}
+.demo a{color:#93c5fd}
+header{position:sticky;top:0;z-index:50;background:rgba(10,35,80,.96);backdrop-filter:blur(8px);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:.2px}
+.logo i{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--acc),#fff3);display:grid;place-items:center;font-style:normal;font-weight:700}
+.links{display:flex;gap:26px;font-size:15px;opacity:.9}.links a:hover{color:var(--acc)}
+.actions{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-acc{background:var(--acc);color:#fff}.btn-acc:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{border-color:#ffffff4d;color:#fff;background:transparent}.btn-ghost:hover{background:#ffffff14}
+.lang{background:transparent;border:1px solid #ffffff40;color:#fff;border-radius:8px;padding:7px 11px;font-size:13px;cursor:pointer;font-family:inherit}
+.hero{background:radial-gradient(1200px 500px at 85% -10%,color-mix(in srgb,var(--acc) 45%,transparent),transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:90px 0 80px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:auto -10% -40% auto;width:520px;height:520px;border:1px solid #ffffff14;border-radius:50%;box-shadow:0 0 0 60px #ffffff06,0 0 0 120px #ffffff04}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.6px;color:var(--acc);background:#ffffff10;border:1px solid #ffffff1f;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.25;margin:0 0 18px;max-width:780px;font-weight:700}
+.hero p.lead{font-size:clamp(16px,2vw,19px);color:#c9d4ea;max-width:640px;margin:0 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px;position:relative;z-index:1}
+.fact{background:#ffffff0d;border:1px solid #ffffff1c;border-radius:var(--r);padding:18px}
+.fact b{display:block;font-size:22px;color:#fff}.fact small{color:#aebbd6;font-size:13.5px}
+section{padding:88px 0}
+.head{max-width:680px;margin-bottom:44px}
+.head .ey{color:var(--acc);font-weight:600;font-size:14px;letter-spacing:.5px}
+.head h2{font-size:clamp(26px,3.4vw,38px);line-height:1.3;margin:8px 0 12px;color:var(--navy)}
+.head p{color:var(--mute);margin:0;font-size:17px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:26px;background:#fff;transition:.25s}
+.card:hover{box-shadow:0 14px 40px -18px #0a235040;transform:translateY(-3px)}
+.ic{width:50px;height:50px;border-radius:12px;background:color-mix(in srgb,var(--acc) 12%,#fff);color:var(--acc);display:grid;place-items:center;margin-bottom:16px}
+.card h3,.svc h3{margin:0 0 8px;font-size:18px;color:var(--navy)}.card p,.svc p{margin:0;color:var(--mute);font-size:15px}
+.bg{background:var(--bg)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{background:#fff;border-radius:var(--r);padding:28px;border:1px solid var(--line);position:relative;overflow:hidden}
+.svc .num{font-family:Inter,sans-serif;font-weight:700;color:color-mix(in srgb,var(--acc) 70%,#fff);font-size:14px;display:block;margin-bottom:10px}
+.svc:before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--acc);opacity:0;transition:.25s}.svc:hover:before{opacity:1}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.steps li{display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.steps li>span{width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-family:Inter}
+.steps h3{margin:0 0 6px;font-size:17px;color:var(--navy)}.steps p{margin:0;color:var(--mute);font-size:14.5px}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.work{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff}
+.work .art{height:170px;background:linear-gradient(135deg,hsl(var(--h) 45% 32%),var(--navy) 70%);position:relative}
+.work .art:after{content:"";position:absolute;inset:22px;border:1px solid #ffffff30;border-radius:10px;background:repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px 28px),repeating-linear-gradient(0deg,#ffffff0d 0 1px,transparent 1px 28px)}
+.wbody{padding:18px 20px}.wbody small{color:var(--acc);font-weight:600}.wbody h3{margin:4px 0 0;font-size:17px;color:var(--navy)}
+.close{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:22px;padding:56px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.close h2{margin:0 0 8px;font-size:clamp(24px,3vw,34px)}.close p{margin:0;color:#c9d4ea}
+form.q{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+form.q input,form.q textarea,form.q select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:#fff}
+form.q textarea{grid-column:1/-1;min-height:110px}form.q .full{grid-column:1/-1}
+footer{background:var(--navy2);color:#aebbd6;padding:56px 0 80px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer h4{color:#fff;margin:0 0 12px;font-size:16px}footer a:hover{color:#fff}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fwa{position:fixed;bottom:46px;inset-inline-end:20px;z-index:55;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px -8px #25d36699}
+.ltr{direction:ltr;unicode-bidi:embed;display:inline-block}
+@media(max-width:960px){.links{display:none}.grid4,.steps{grid-template-columns:repeat(2,1fr)}.grid3,.works{grid-template-columns:1fr 1fr}.facts{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr}}
+@media(max-width:600px){section{padding:64px 0}.hero{padding:64px 0 56px}.grid4,.steps,.grid3,.works{grid-template-columns:1fr}.close{padding:32px 22px}form.q{grid-template-columns:1fr}.actions .btn{padding:9px 12px;font-size:13px;white-space:nowrap}.lang{padding:6px 8px}.logo{gap:8px}.logo span{font-size:14px;line-height:1.35}.logo i{width:32px;height:32px;flex:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a href="#" class="logo"><i>M</i><span><span data-en="Al Majeed Plastic Industries">المجيد للصناعات البلاستيكية</span></span></a>
+  <nav class="links"><a href="#why"><span data-en="Why us">لماذا نحن</span></a><a href="#services"><span data-en="Products">منتجاتنا</span></a><a href="#process"><span data-en="Process">آلية العمل</span></a><a href="#work"><span data-en="Industries we serve">قطاعات نخدمها</span></a><a href="#contact"><span data-en="Contact">تواصل</span></a></nav>
+  <div class="actions"><button class="lang" id="lang" type="button">EN</button><a class="btn btn-acc" href="#contact"><span data-en="Request a quote">اطلب عرض سعر</span></a></div>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <span class="eyebrow"><span data-en="PET &amp; HDPE packaging — made in Jordan since 1991">عبوات PET و HDPE — صناعة أردنية منذ 1991</span></span>
+  <h1><span data-en="Food-safe and industrial plastic packaging, exported across the region">عبوات بلاستيكية آمنة للغذاء والمنظفات، بجودة تُصدَّر للخليج والعراق</span></h1>
+  <p class="lead"><span data-en="We design moulds and manufacture bottles in our North Marka plant: PET preforms, bottles, gallons and jars — consistent specs, reliable delivery.">نصمّم ونصنع القوالب والعبوات في مصنعنا بماركا الشمالية: بريفورمات PET، قوارير، جالونات وعلب — بمواصفات ثابتة وتسليم منتظم.</span></p>
+  <div class="cta"><a class="btn btn-acc" href="#contact"><span data-en="Request a quote">اطلب عرض سعر</span></a><a class="btn btn-ghost" href="#services"><span data-en="Browse products">تصفّح المنتجات</span></a></div>
+  <div class="facts"><div class="fact"><b><span data-en="Since 1991">منذ 1991</span></b><small><span data-en="in packaging">في صناعة العبوات</span></small></div><div class="fact"><b>ISO 22000</b><small><span data-en="plus HACCP">وشهادة HACCP</span></small></div><div class="fact"><b><span data-en="4 export markets">4 أسواق تصدير</span></b><small><span data-en="KSA, Iraq, Qatar, Palestine">السعودية، العراق، قطر، فلسطين</span></small></div><div class="fact"><b><span data-en="2,000 m²">2,000 م²</span></b><small><span data-en="mould-making base">قسم تصنيع القوالب</span></small></div></div>
+</div></section>
+<section id="why"><div class="wrap">
+  <div class="head"><span class="ey"><span data-en="Why us">لماذا نحن</span></span><h2><span data-en="One plant, from mould to bottle">مصنع واحد من القالب حتى العبوة</span></h2></div>
+  <div class="grid4"><article class="card"><div class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M5.2 18.8l2.1-2.1M16.7 7.3l2.1-2.1"/></svg></div><h3><span data-en="In-house moulds">قوالب نصنعها بأنفسنا</span></h3><p><span data-en="A dedicated mould shop means custom shapes for your brand, fast.">قسم مختص بتصنيع القوالب يعني تطوير أشكال خاصة لعلامتك بسرعة.</span></p></article><article class="card"><div class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><h3><span data-en="Certified food safety">سلامة غذائية معتمدة</span></h3><p><span data-en="ISO 22000, HACCP and Jordan FDA approval.">ISO 22000 و HACCP وموافقة المؤسسة العامة للغذاء والدواء.</span></p></article><article class="card"><div class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></div><h3><span data-en="Export experience">خبرة تصدير</span></h3><p><span data-en="Supplying clients in KSA, Iraq, Qatar and Palestine.">نورّد لعملاء في السعودية والعراق وقطر وفلسطين.</span></p></article><article class="card"><div class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg></div><h3><span data-en="Wide range">تشكيلة واسعة</span></h3><p><span data-en="From PET preforms to oil gallons and tahini tubs.">من بريفورمات PET إلى جالونات الزيوت وعلب الطحينة.</span></p></article></div>
+</div></section>
+<section id="services" class="bg"><div class="wrap">
+  <div class="head"><span class="ey"><span data-en="Products">منتجاتنا</span></span><h2><span data-en="Packaging for every sector">عبوات لكل قطاع</span></h2><p><span data-en="Ask for samples or technical specs for any item.">اطلب عيّنات أو مواصفات فنية لأي منتج.</span></p></div>
+  <div class="grid3"><article class="svc"><span class="num">01</span><h3><span data-en="PET preforms">بريفورمات PET</span></h3><p><span data-en="For water, juice and beverage bottles.">لقوارير المياه والعصائر والمشروبات.</span></p></article><article class="svc"><span class="num">02</span><h3><span data-en="Detergent &amp; cosmetic bottles">عبوات المنظفات ومستحضرات التجميل</span></h3><p><span data-en="HDPE and PET bottles in many sizes.">قوارير HDPE و PET بأحجام وأشكال متعددة.</span></p></article><article class="svc"><span class="num">03</span><h3><span data-en="Food &amp; dairy containers">عبوات الغذاء والألبان</span></h3><p><span data-en="Dairy and juice bottles, PET buckets.">قوارير ألبان وعصير وسطول PET.</span></p></article><article class="svc"><span class="num">04</span><h3><span data-en="Oil &amp; chemical gallons">جالونات الزيوت والكيماويات</span></h3><p><span data-en="Motor-oil, chemical and fertilizer gallons.">جالونات زيوت المحركات والكيماويات والأسمدة.</span></p></article><article class="svc"><span class="num">05</span><h3><span data-en="Tahini, halva &amp; spice jars">علب الطحينة والحلاوة والبهارات</span></h3><p><span data-en="Jars for oil, vinegar, ketchup and thyme.">علب وبرطمانات للزيت والخل والكاتشب والزعتر.</span></p></article><article class="svc"><span class="num">06</span><h3><span data-en="Moulds">القوالب</span></h3><p><span data-en="Moulds for blow and injection machines.">تصنيع قوالب لماكينات النفخ والحقن.</span></p></article></div>
+</div></section>
+<section id="process"><div class="wrap">
+  <div class="head"><span class="ey"><span data-en="Process">آلية العمل</span></span><h2><span data-en="From enquiry to delivery">من الطلب حتى التسليم</span></h2></div>
+  <ol class="steps"><li><span>1</span><div><h3><span data-en="Specs">المواصفات</span></h3><p><span data-en="You set size, shape, material and quantity.">تحدد الحجم والشكل والخامة والكمية.</span></p></div></li><li><span>2</span><div><h3><span data-en="Sample">العيّنة</span></h3><p><span data-en="We prepare a sample or custom mould.">نجهّز عيّنة أو قالباً خاصاً عند الحاجة.</span></p></div></li><li><span>3</span><div><h3><span data-en="Production">الإنتاج</span></h3><p><span data-en="Blow &amp; injection lines with QC.">تصنيع بخطوط نفخ وحقن ورقابة جودة.</span></p></div></li><li><span>4</span><div><h3><span data-en="Delivery">التسليم</span></h3><p><span data-en="Local delivery or export.">شحن محلي أو تصدير حسب طلبك.</span></p></div></li></ol>
+</div></section>
+<section id="work" class="bg"><div class="wrap">
+  <div class="head"><span class="ey"><span data-en="Industries we serve">قطاعات نخدمها</span></span><h2><span data-en="Our packaging is on many shelves">عبواتنا على رفوف قطاعات متعددة</span></h2><p><span data-en="Sectors we manufacture for.">أمثلة على القطاعات التي نصنع لها.</span></p></div>
+  <div class="works"><article class="work" style="--h:0"><div class="art"></div><div class="wbody"><small><span data-en="Bottles &amp; gallons">قوارير وجالونات</span></small><h3><span data-en="Detergents">المنظفات</span></h3></div></article><article class="work" style="--h:47"><div class="art"></div><div class="wbody"><small><span data-en="Bottles &amp; buckets">قوارير وسطول</span></small><h3><span data-en="Dairy &amp; juice">الألبان والعصائر</span></h3></div></article><article class="work" style="--h:94"><div class="art"></div><div class="wbody"><small><span data-en="Gallons">جالونات</span></small><h3><span data-en="Oils &amp; chemicals">الزيوت والكيماويات</span></h3></div></article><article class="work" style="--h:141"><div class="art"></div><div class="wbody"><small><span data-en="Jars">علب وبرطمانات</span></small><h3><span data-en="Food &amp; spices">الأغذية والبهارات</span></h3></div></article><article class="work" style="--h:188"><div class="art"></div><div class="wbody"><small><span data-en="Bottles">قوارير</span></small><h3><span data-en="Cosmetics">مستحضرات التجميل</span></h3></div></article><article class="work" style="--h:235"><div class="art"></div><div class="wbody"><small><span data-en="Sterilizer containers">عبوات المعقمات</span></small><h3><span data-en="Medical">القطاع الطبي</span></h3></div></article></div>
+</div></section>
+<section id="contact"><div class="wrap">
+  <div class="close"><div><h2><span data-en="Need packaging for your product?">محتاج عبوات لمنتجك؟</span></h2><p><span data-en="Send your specs and we will reply with a quote.">أرسل المواصفات ونرد عليك بعرض سعر خلال يوم عمل.</span></p></div><a class="btn btn-acc" href="tel:+96264889011"><span data-en="Call us now">اتصل بنا الآن</span></a></div>
+  <form class="q" onsubmit="event.preventDefault();this.querySelector('button').textContent=document.documentElement.lang=='en'?'Thank you — we will contact you shortly':'شكراً لك — سنتواصل معك قريباً'">
+    <input required placeholder="الاسم / الشركة" data-ph-en="Name / Company"><input required type="tel" placeholder="رقم الهاتف" data-ph-en="Phone">
+    <input class="full" type="email" placeholder="البريد الإلكتروني" data-ph-en="Email">
+    <textarea placeholder="نوع العبوة، الحجم، الكمية المطلوبة…" data-ph-en="Container type, size, quantity…"></textarea>
+    <button class="btn btn-acc full" type="submit"><span data-en="Send quote request">أرسل طلب عرض السعر</span></button>
+  </form>
+</div></section>
+</main>
+<footer><div class="wrap fgrid">
+  <div><h4><span data-en="Al Majeed Plastic Industries">المجيد للصناعات البلاستيكية</span></h4><p><span data-en="PET &amp; HDPE packaging and moulds — made in Jordan since 1991. Sat–Thu 8:00–16:30.">عبوات بلاستيكية PET و HDPE وقوالب — صناعة أردنية منذ 1991. السبت–الخميس 8:00–4:30.</span></p></div>
+  <div><h4><span data-en="Contact">تواصل معنا</span></h4><ul><li><a class="ltr" href="tel:+96264889011">+962 6 488 9011</a></li><li><a class="ltr" href="mailto:sales@al-majeed.com">sales@al-majeed.com</a></li></ul></div>
+  <div><h4><span data-en="Address">العنوان</span></h4><ul><li><span data-en="Complex 4, Mahmoud Abu Hafeethah St, North Marka, Amman">مجمع رقم 4، شارع محمود أبو حفيظة، ماركا الشمالية، عمّان</span></li><li><a href="https://www.google.com/maps/search/?api=1&query=Al Majeed Plastic Industries North Marka Amman" target="_blank" rel="noopener"><span data-en="Open in Maps →">افتح على الخريطة ←</span></a></li></ul></div>
+</div></footer>
+<a class="fwa" href="#contact" aria-label="WhatsApp" ><svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.5-.3z"/></svg></a>
+<div class="demo">نسخة تجريبية مقترحة — صُممت بواسطة <a href="https://motasem.ai" target="_blank" rel="noopener">motasem.ai</a></div>
+<script>
+(function(){var b=document.getElementById('lang'),h=document.documentElement,en=false;
+b.addEventListener('click',function(){en=!en;h.lang=en?'en':'ar';h.dir=en?'ltr':'rtl';b.textContent=en?'عربي':'EN';
+document.querySelectorAll('[data-en]').forEach(function(e){if(!e.dataset.ar)e.dataset.ar=e.innerHTML;e.innerHTML=en?e.dataset.en:e.dataset.ar;});
+document.querySelectorAll('[data-ph-en]').forEach(function(e){if(!e.dataset.phAr)e.dataset.phAr=e.placeholder;e.placeholder=en?e.dataset.phEn:e.dataset.phAr;});});})();
+</script>
+</body>
+</html>
