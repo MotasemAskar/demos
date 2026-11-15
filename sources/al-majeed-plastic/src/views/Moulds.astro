@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { FACTS } from '../config';
+import { type Lang, localePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const L = (p: string) => localePath(lang, p);
+
+const c = {
+  en: {
+    metaTitle: 'Mould Making — Blow & Injection Moulds Built In-House',
+    metaDesc:
+      'Al Majeed builds its own moulds for blow and injection machines on a 2,000 m² mould-making base in Amman — custom bottle shapes without waiting on an outside toolmaker.',
+    eyebrow: 'Mould making',
+    title: 'The part of a bottle you never see',
+    lede: `Every container starts as a block of steel. We cut ours on a ${FACTS.mouldBaseM2} m² mould-making base inside the plant — for our own lines and for bottle machines like yours.`,
+    whyEyebrow: 'Why it matters',
+    whyTitle: 'Owning the mould means owning the outcome',
+    why: [
+      { icon: 'clock', title: 'Shorter launches', text: 'A new shape goes from drawing to trial pieces without a queue at an outside workshop.' },
+      { icon: 'target', title: 'Your shape, exactly', text: 'Your bottle is designed around your brand and filling line, not adapted from someone else’s.' },
+      { icon: 'cog', title: 'Fixes on the spot', text: 'Neck finish, wall thickness or base stability — adjusted by the team that built the mould.' },
+      { icon: 'shield-check', title: 'Consistency', text: 'The same mould, maintained in-house, means the 10,000th piece matches the first.' },
+    ],
+    whatEyebrow: 'What we build',
+    whatTitle: 'Moulds for both sides of the plant',
+    what: [
+      { icon: 'wind', title: 'Blow moulds', text: 'For bottles, gallons and containers — HDPE and PET.' },
+      { icon: 'zap', title: 'Injection moulds', text: 'For PET preforms, jars and tubs.' },
+      { icon: 'package', title: 'Moulds for your machines', text: 'Already run your own blow-moulder? We make moulds for bottle machines too.' },
+    ],
+    imgAlt: 'Mould maker inspecting the polished cavity of a steel mould',
+    imgAlt2: 'CNC machining a steel mould block',
+    ctaTitle: 'Have a bottle in mind?',
+    ctaText: 'Send a sketch, a photo of a reference bottle or just the volume and use — our mould team will tell you what it takes.',
+  },
+  ar: {
+    metaTitle: 'تصنيع القوالب — قوالب نفخ وحقن داخل المصنع',
+    metaDesc:
+      'المجيد بتصنع قوالبها لماكينات النفخ والحقن في قسم قوالب مساحته 2,000 م² في عمّان — أشكال عبوات خاصة بدون انتظار صانع قوالب من برا.',
+    eyebrow: 'تصنيع القوالب',
+    title: 'الجزء من العبوة اللي ما بتشوفه',
+    lede: `كل عبوة بتبدأ قطعة فولاذ. قوالبنا بنصنعها في قسم مساحته ${FACTS.mouldBaseM2} م² داخل المصنع — لخطوطنا، ولماكينات القوارير زي اللي عندك.`,
+    whyEyebrow: 'ليش مهم',
+    whyTitle: 'اللي بيملك القالب، بيملك النتيجة',
+    why: [
+      { icon: 'clock', title: 'إطلاق أسرع', text: 'الشكل الجديد بيوصل من الرسمة لعيّنات التجربة بدون طابور عند ورشة من برا.' },
+      { icon: 'target', title: 'شكلك بالزبط', text: 'عبوتك مصممة حسب علامتك وخط تعبئتك، مش معدّلة عن عبوة غيرك.' },
+      { icon: 'cog', title: 'تعديل فوري', text: 'العنق أو سماكة الجدار أو ثبات القاعدة — بيعدّلها نفس الفريق اللي صنع القالب.' },
+      { icon: 'shield-check', title: 'ثبات', text: 'نفس القالب، وصيانته عنا، يعني القطعة رقم 10,000 مثل أول قطعة.' },
+    ],
+    whatEyebrow: 'شو بنصنع',
+    whatTitle: 'قوالب للجهتين بالمصنع',
+    what: [
+      { icon: 'wind', title: 'قوالب النفخ', text: 'للقوارير والجالونات والعبوات — HDPE و PET.' },
+      { icon: 'zap', title: 'قوالب الحقن', text: 'لبريفورم PET والبرطمانات والعلب.' },
+      { icon: 'package', title: 'قوالب لماكيناتك', text: 'عندك ماكينة نفخ خاصة فيك؟ بنصنع قوالب لماكينات القوارير كمان.' },
+    ],
+    imgAlt: 'صانع قوالب يفحص تجويف قالب فولاذي مصقول',
+    imgAlt2: 'تشغيل CNC على كتلة قالب فولاذية',
+    ctaTitle: 'عندك عبوة ببالك؟',
+    ctaText: 'ابعت رسمة أو صورة عبوة مرجعية أو بس الحجم والاستخدام — وفريق القوالب بيحكيلك شو بدها.',
+  },
+}[lang];
+---
+
+<BaseLayout lang={lang} title={c.metaTitle} description={c.metaDesc}>
+  <PageHero eyebrow={c.eyebrow} title={c.title} lede={c.lede} image="/images/factory/moulds.webp" />
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading eyebrow={c.whyEyebrow} title={c.whyTitle} />
+    <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        c.why.map((w) => (
+          <li class="rounded-2xl border border-line bg-white p-6 shadow-sm">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-aqua-light text-aqua-dark">
+              <Icon name={w.icon} class="h-5 w-5" />
+            </span>
+            <h3 class="mt-4 text-lg font-bold text-navy">{w.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink/70">{w.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div class="grid grid-cols-2 gap-4">
+        <img src="/images/factory/mould-cavity.webp" alt={c.imgAlt} width="900" height="1200" loading="lazy" class="aspect-[3/4] w-full rounded-2xl object-cover shadow-md" />
+        <img src="/images/factory/cnc.webp" alt={c.imgAlt2} width="900" height="1200" loading="lazy" class="mt-10 aspect-[3/4] w-full rounded-2xl object-cover shadow-md" />
+      </div>
+      <div>
+        <SectionHeading eyebrow={c.whatEyebrow} title={c.whatTitle} align="start" />
+        <ul class="mt-8 space-y-4">
+          {
+            c.what.map((w) => (
+              <li class="flex items-start gap-4 rounded-xl border border-line bg-white p-5 shadow-sm">
+                <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy text-aqua">
+                  <Icon name={w.icon} class="h-5 w-5" />
+                </span>
+                <span>
+                  <span class="block text-base font-bold text-navy">{w.title}</span>
+                  <span class="mt-1 block text-sm text-ink/70">{w.text}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <a href={L('/contact?product=mould#rfq')} class="mt-8 inline-flex items-center gap-2 rounded-md bg-navy px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-navy-deep">
+          {lang === 'ar' ? 'اطلب قالب لشكلك' : 'Request a mould for your shape'}
+          <Icon name="arrow-right" class="h-4 w-4 rtl:rotate-180" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={c.ctaTitle} text={c.ctaText} />
+</BaseLayout>

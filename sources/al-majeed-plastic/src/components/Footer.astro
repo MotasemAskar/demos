@@ -1,0 +1,104 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { COMPANY, CONTACT } from '../config';
+import { PRODUCTS } from '../data/products';
+import { type Lang, UI, localePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const year = new Date().getFullYear();
+const mottoIcons = ['shield-check', 'cog', 'globe'];
+---
+
+<footer class="bg-navy-deep text-white">
+  <div class="color-rule" aria-hidden="true"></div>
+  <div class="border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <ul class="flex flex-col items-center justify-between gap-4 text-sm text-white/70 md:flex-row">
+        {
+          t.footer.mottos.map((m, i) => (
+            <li class="flex items-center gap-2">
+              <Icon name={mottoIcons[i]} class="h-5 w-5 text-aqua" />
+              <span>{m}</span>
+            </li>
+          ))
+        }
+        <li class="text-center font-semibold uppercase tracking-wider text-white/90">{t.footer.motto}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="space-y-4">
+        <Logo tone="light" />
+        <p class="text-sm text-white/70">{lang === 'ar' ? COMPANY.nameAr : COMPANY.nameEn}</p>
+        <p class="text-sm text-white/70">{t.activity}</p>
+        <p class="text-sm font-semibold text-aqua">{t.madeIn}</p>
+      </div>
+
+      <nav aria-label={t.footer.quick}>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white/60">{t.footer.quick}</h2>
+        <ul class="space-y-2">
+          {
+            t.nav.slice(1).map((l) => (
+              <li>
+                <a href={localePath(lang, l.href)} class="text-sm text-white/80 transition-colors hover:text-aqua">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label={t.footer.products}>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white/60">{t.footer.products}</h2>
+        <ul class="space-y-2">
+          {
+            PRODUCTS.map((p) => (
+              <li>
+                <a href={localePath(lang, `/products#${p.slug}`)} class="text-sm text-white/80 transition-colors hover:text-aqua">
+                  {p.name[lang]}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white/60">{t.footer.contact}</h2>
+        <ul class="space-y-3 text-sm text-white/80">
+          <li class="flex items-start gap-2">
+            <Icon name="phone" class="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
+            <a href={`tel:${CONTACT.phoneHref}`} class="hover:text-aqua" dir="ltr">{CONTACT.phone}</a>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="mail" class="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
+            <a href={`mailto:${CONTACT.emailHref}`} class="break-all hover:text-aqua">{CONTACT.email}</a>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
+            <span>{lang === 'ar' ? CONTACT.addressAr : CONTACT.addressEn}</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="clock" class="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
+            <span>{lang === 'ar' ? CONTACT.hoursAr : CONTACT.hoursEn}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/60 sm:flex-row sm:px-6 lg:px-8">
+      <p>© {year} {lang === 'ar' ? COMPANY.legalAr : COMPANY.legalEn} — {t.footer.rights}</p>
+      <p>{t.tagline}</p>
+    </div>
+  </div>
+</footer>

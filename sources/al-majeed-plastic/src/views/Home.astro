@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import BottlePattern from '../components/BottlePattern.astro';
+import ProcessFlow from '../components/ProcessFlow.astro';
+import { PRODUCTS, SECTORS } from '../data/products';
+import { FACTS } from '../config';
+import { type Lang, UI, localePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const ui = UI[lang];
+const L = (p: string) => localePath(lang, p);
+const markets = FACTS.markets[lang];
+
+const c = {
+  en: {
+    metaTitle: 'PET & HDPE Packaging Manufacturer in Jordan',
+    metaDesc:
+      'Al Majeed Plastic Industries makes PET preforms, bottles, gallons and jars in North Marka, Amman since 1991 — with in-house mould making, ISO 22000 and HACCP.',
+    eyebrow: 'PET & HDPE Packaging Manufacturer · North Marka, Amman',
+    title1: 'Packaging your product can stand on.',
+    title2: 'Made in Jordan since 1991.',
+    lede:
+      'Preforms, bottles, gallons and jars for food, beverage, detergent, chemical and medical brands — moulded in our own plant, on moulds we build ourselves.',
+    explore: 'Explore Products',
+    certs: 'Certified',
+    stats: [
+      { value: FACTS.founded, label: 'Manufacturing since' },
+      { value: 'ISO 22000', label: 'Food-safety system' },
+      { value: String(markets.length), label: 'Export markets' },
+      { value: `${FACTS.mouldBaseM2} m²`, label: 'Mould-making base' },
+    ],
+    mouldEyebrow: 'Mould to bottle',
+    mouldTitle: 'We build the mould. Then we make the bottle.',
+    mouldLede:
+      'Most packaging suppliers wait on an outside toolmaker. Our own mould-making base sits next to the production floor — so a new shape, a lighter bottle or a fixed neck finish is a conversation down the corridor, not a wait on an outside workshop.',
+    mouldPoints: [
+      'Moulds for blow and injection machines, made in-house',
+      'Your own bottle shape, not a catalogue compromise',
+      'Food-contact production under ISO 22000 and HACCP',
+      'Factory-direct pricing from North Marka, Amman',
+    ],
+    mouldLink: 'See our mould making',
+    mouldBadge: 'Mould-making base',
+    productsEyebrow: 'Products',
+    productsTitle: 'Six families, one plant',
+    productsLede: 'From a water-bottle preform to a fertilizer gallon — everything a filling line needs.',
+    more: 'Details',
+    flowEyebrow: 'How it is made',
+    flowTitle: 'Two processes, one roof',
+    flowLede: 'Injection for preforms and jars, blow moulding for bottles and gallons — both fed by the moulds we build in-house.',
+    sectorsEyebrow: 'Who we pack for',
+    sectorsTitle: 'Packaging for what goes inside',
+    sectorsLede: 'Eight sectors fill our containers every day — and each one has different rules for the plastic around it.',
+    exportEyebrow: 'From Amman to the region',
+    exportTitle: 'Shipped to filling lines across four markets',
+    exportLede: 'Palletized and wrapped at the plant, our containers are trusted by producers in:',
+    exportAlt: 'Pallets of wrapped plastic containers ready for loading',
+  },
+  ar: {
+    metaTitle: 'مصنع عبوات PET و HDPE في الأردن',
+    metaDesc:
+      'المجيد للصناعات البلاستيكية — تصنيع بريفورم PET والقوارير والجالونات والبرطمانات في ماركا الشمالية، عمّان منذ 1991، مع تصنيع قوالب داخلي و ISO 22000 و HACCP.',
+    eyebrow: 'مصنع عبوات PET و HDPE · ماركا الشمالية، عمّان',
+    title1: 'عبوة يقف عليها منتجك.',
+    title2: 'صناعة أردنية منذ 1991.',
+    lede:
+      'بريفورم وقوارير وجالونات وبرطمانات لعلامات الأغذية والمشروبات والمنظفات والكيماويات والقطاع الطبي — نصنعها في مصنعنا، وعلى قوالب نصنعها بأنفسنا.',
+    explore: 'تصفّح المنتجات',
+    certs: 'معتمدون',
+    stats: [
+      { value: FACTS.founded, label: 'نصنّع منذ' },
+      { value: 'ISO 22000', label: 'نظام سلامة الغذاء' },
+      { value: String(markets.length), label: 'أسواق تصدير' },
+      { value: `${FACTS.mouldBaseM2} m²`, label: 'قسم تصنيع القوالب' },
+    ],
+    mouldEyebrow: 'من القالب إلى العبوة',
+    mouldTitle: 'نصنع القالب. وبعدين نصنع العبوة.',
+    mouldLede:
+      'أغلب مورّدي العبوات بيستنّوا صانع قوالب من برا. قسم القوالب عنا جنب خط الإنتاج — يعني شكل جديد أو عبوة أخف أو تعديل عنق هو حديث بالممر، مش انتظار على ورشة من برا.',
+    mouldPoints: [
+      'قوالب لماكينات النفخ والحقن، تُصنع داخل المصنع',
+      'شكل عبوتك الخاص، مش حل وسط من كتالوج',
+      'إنتاج ملامس للغذاء ضمن ISO 22000 و HACCP',
+      'سعر المصنع مباشرة من ماركا الشمالية، عمّان',
+    ],
+    mouldLink: 'تعرّف على تصنيع القوالب',
+    mouldBadge: 'قسم تصنيع القوالب',
+    productsEyebrow: 'المنتجات',
+    productsTitle: 'ست عائلات، مصنع واحد',
+    productsLede: 'من بريفورم قنينة المي إلى جالون الأسمدة — كل اللي بيحتاجه خط التعبئة.',
+    more: 'التفاصيل',
+    flowEyebrow: 'كيف نصنع',
+    flowTitle: 'طريقتين تصنيع، سقف واحد',
+    flowLede: 'الحقن للبريفورم والبرطمانات، والنفخ للقوارير والجالونات — والاثنتين على قوالب بنصنعها عنا.',
+    sectorsEyebrow: 'لمين بنصنع',
+    sectorsTitle: 'عبوات حسب اللي جوّاها',
+    sectorsLede: 'ثمان قطاعات بتعبّي عبواتنا كل يوم — ولكل قطاع شروطه الخاصة بالبلاستيك اللي حوالين منتجه.',
+    exportEyebrow: 'من عمّان للمنطقة',
+    exportTitle: 'عبواتنا على خطوط تعبئة بأربع أسواق',
+    exportLede: 'تُغلّف على طبالي من المصنع، ويعتمد عليها منتجون في:',
+    exportAlt: 'طبالي عبوات بلاستيكية مغلّفة جاهزة للتحميل',
+  },
+}[lang];
+---
+
+<BaseLayout lang={lang} title={c.metaTitle} description={c.metaDesc}>
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden bg-navy">
+    <img
+      src="/images/hero-plant.webp"
+      alt=""
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy/85 to-teal/40 rtl:bg-gradient-to-l" aria-hidden="true"></div>
+    <BottlePattern class="absolute inset-0 -z-10 h-full w-full" opacity={0.07} />
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+      <p class="text-xs font-semibold uppercase tracking-widest text-aqua sm:text-sm">{c.eyebrow}</p>
+      <h1 class="font-display mt-4 max-w-4xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+        {c.title1}<br /><span class="text-aqua">{c.title2}</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">{c.lede}</p>
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a
+          href={L('/contact#rfq')}
+          class="inline-flex items-center justify-center gap-2 rounded-md bg-aqua px-6 py-3 text-base font-bold text-navy-deep shadow-md transition hover:bg-white"
+        >
+          {ui.cta}
+          <Icon name="arrow-right" class="h-4 w-4 rtl:rotate-180" />
+        </a>
+        <a
+          href={L('/products')}
+          class="inline-flex items-center justify-center gap-2 rounded-md border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+        >
+          {c.explore}
+        </a>
+      </div>
+      <div class="mt-12 flex flex-wrap items-center gap-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-white/60">{c.certs}</span>
+        <ul class="flex flex-wrap gap-2">
+          {
+            FACTS.certifications.map((cert) => (
+              <li class="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/5 px-3 py-1 text-xs font-semibold text-white" dir="ltr">
+                <Icon name="badge-check" class="h-3.5 w-3.5 text-aqua" />
+                {cert}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="color-rule" aria-hidden="true"></div>
+  </section>
+
+  <!-- Facts -->
+  <section class="border-b border-line bg-mist" aria-label={lang === 'ar' ? 'أرقام المصنع' : 'Factory facts'}>
+    <dl class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 sm:px-6 lg:grid-cols-4 lg:px-8">
+      {
+        c.stats.map((s) => (
+          <div class="text-center">
+            <dt class="text-xs font-semibold uppercase tracking-wider text-ink/55">{s.label}</dt>
+            <dd class="font-display mt-1 text-2xl font-extrabold text-navy sm:text-4xl" dir={/[؀-ۿ]/.test(s.value) ? 'rtl' : 'ltr'}>{s.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <!-- Mould to bottle -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow={c.mouldEyebrow} title={c.mouldTitle} lede={c.mouldLede} align="start" />
+        <ul class="mt-8 space-y-3">
+          {
+            c.mouldPoints.map((p) => (
+              <li class="flex items-start gap-3 text-base text-ink/80">
+                <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-aqua-light text-aqua-dark">
+                  <Icon name="check" class="h-4 w-4" />
+                </span>
+                <span>{p}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a href={L('/moulds')} class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-aqua-dark hover:underline">
+          {c.mouldLink}
+          <Icon name="arrow-right" class="h-4 w-4 rtl:rotate-180" />
+        </a>
+      </div>
+      <div class="relative">
+        <img
+          src="/images/factory/moulds.webp"
+          alt={lang === 'ar' ? 'قالب نفخ معدني مفتوح في قسم القوالب' : 'Open steel blow mould in the mould shop'}
+          width="1600"
+          height="1000"
+          loading="lazy"
+          class="w-full rounded-2xl object-cover shadow-lg"
+        />
+        <div class="absolute -bottom-5 start-5 hidden rounded-xl bg-white px-5 py-4 shadow-lg sm:block">
+          <p class="font-display text-2xl font-extrabold text-navy" dir="ltr">{FACTS.mouldBaseM2} m²</p>
+          <p class="text-xs font-semibold text-ink/60">{c.mouldBadge}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="bg-mist">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionHeading eyebrow={c.productsEyebrow} title={c.productsTitle} lede={c.productsLede} />
+      <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          PRODUCTS.map((p) => (
+            <li>
+              <a
+                href={L(`/products#${p.slug}`)}
+                class="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-aqua hover:shadow-md"
+              >
+                <img src={p.image} alt={p.imageAlt[lang]} width="960" height="600" loading="lazy" class="aspect-[16/10] w-full object-cover" />
+                <div class="flex flex-1 flex-col p-6">
+                  <div class="flex items-center gap-3">
+                    <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-aqua-light text-aqua-dark">
+                      <Icon name={p.icon} class="h-5 w-5" />
+                    </span>
+                    <h3 class="text-lg font-bold text-navy">{p.name[lang]}</h3>
+                  </div>
+                  <p class="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{p.short[lang]}</p>
+                  <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-aqua-dark">
+                    {c.more}
+                    <Icon name="arrow-right" class="h-4 w-4 transition group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Process flow -->
+  <section class="relative isolate overflow-hidden bg-navy-deep">
+    <BottlePattern class="absolute inset-0 -z-10 h-full w-full" opacity={0.05} />
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionHeading eyebrow={c.flowEyebrow} title={c.flowTitle} lede={c.flowLede} tone="light" />
+      <ProcessFlow lang={lang} class="mt-12" />
+    </div>
+  </section>
+
+  <!-- Sectors -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading eyebrow={c.sectorsEyebrow} title={c.sectorsTitle} lede={c.sectorsLede} />
+    <ul class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {
+        SECTORS.map((s) => (
+          <li class="flex flex-col items-center gap-3 rounded-2xl border border-line bg-white p-5 text-center shadow-sm transition hover:border-aqua">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-aqua-light text-aqua-dark">
+              <Icon name={s.icon} class="h-6 w-6" />
+            </span>
+            <span class="text-sm font-bold text-navy">{s.name[lang]}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- Export -->
+  <section class="bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <img src="/images/real/pallets.webp" alt={c.exportAlt} width="1200" height="900" loading="lazy" class="w-full rounded-2xl object-cover shadow-lg" />
+      <div>
+        <SectionHeading eyebrow={c.exportEyebrow} title={c.exportTitle} lede={c.exportLede} align="start" />
+        <ul class="mt-8 grid grid-cols-2 gap-3">
+          {
+            markets.map((m) => (
+              <li class="flex items-center gap-3 rounded-xl border border-line bg-white px-4 py-3 shadow-sm">
+                <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-navy text-aqua">
+                  <Icon name="truck" class="h-5 w-5" />
+                </span>
+                <span class="text-base font-bold text-navy">{m}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} />
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+/**
+ * Demo lockup: bottle monogram + typeset wordmark. The company's real logo is not
+ * public, so this is a neutral placeholder mark for the prospect demo.
+ */
+interface Props {
+  tone?: 'dark' | 'light';
+  class?: string;
+}
+const { tone = 'dark', class: className = '' } = Astro.props;
+const word = tone === 'light' ? 'text-white' : 'text-navy';
+---
+
+<span class:list={['inline-flex items-center gap-2.5', className]} dir="ltr">
+  <img src="/brand/monogram.svg" alt="" width="64" height="80" class="h-9 w-auto lg:h-11" />
+  <span class="flex flex-col leading-none">
+    <span class:list={['wordmark text-xl font-extrabold lg:text-2xl', word]}>AL MAJEED</span>
+    <span class:list={['wordmark mt-1 flex items-center gap-1 text-[0.55rem] font-bold tracking-[0.28em] lg:text-[0.62rem]', word]}>
+      <span class="inline-block h-1 w-1 rounded-full bg-aqua"></span>PLASTIC INDUSTRIES<span class="inline-block h-1 w-1 rounded-full bg-aqua"></span>
+    </span>
+  </span>
+</span>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout lang="en" title="Page Not Found" description="The page you are looking for does not exist.">
+  <section class="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6">
+    <p class="font-display text-7xl font-extrabold tracking-tight text-aqua">404</p>
+    <h1 class="font-display mt-4 text-3xl font-extrabold tracking-tight text-navy">Page not found</h1>
+    <p class="mt-3 max-w-md text-base leading-relaxed text-ink/70">The page you are looking for may have been moved or no longer exists.</p>
+    <p lang="ar" dir="rtl" class="mt-4 text-lg font-semibold text-navy" style="font-family: var(--font-arabic)">الصفحة غير موجودة</p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="/" class="inline-flex items-center gap-2 rounded-md bg-navy px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-deep">Back to home</a>
+      <a href="/ar/" lang="ar" class="inline-flex items-center gap-2 rounded-md border border-navy/20 px-6 py-3 text-sm font-semibold text-navy transition hover:bg-aqua-light" style="font-family: var(--font-arabic)">الصفحة الرئيسية</a>
+      <a href="/products" class="inline-flex items-center gap-2 rounded-md border border-navy/20 px-6 py-3 text-sm font-semibold text-navy transition hover:bg-aqua-light">
+        Browse products <Icon name="arrow-right" class="h-4 w-4" />
+      </a>
+    </div>
+  </section>
+</BaseLayout>

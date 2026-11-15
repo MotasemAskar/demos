@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY, SITE_URL } from '../config';
+import { type Lang, UI, dirOf, localePath, basePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { lang, title, description, ogImage = '/brand/og-default.png' } = Astro.props;
+
+const base = basePath(Astro.url.pathname);
+// SITE_URL carries a sub-path (GitHub Pages demo), so join instead of new URL().
+const abs = (p: string) => SITE_URL + (p === '/' ? '/' : p);
+const canonical = abs(localePath(lang, base));
+const altEn = abs(localePath('en', base));
+const altAr = abs(localePath('ar', base));
+const ogImageAbs = abs(ogImage);
+const siteName = lang === 'ar' ? 'عصفور ماستر باتش' : COMPANY.nameEn;
+const fullTitle = `${title} | ${siteName}`;
+---
+
+<!doctype html>
+<html lang={lang} dir={dirOf(lang)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={altEn} />
+    <link rel="alternate" hreflang="ar" href={altAr} />
+    <link rel="alternate" hreflang="x-default" href={altEn} />
+    <meta name="theme-color" content="#0b2545" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={lang === 'ar' ? 'ar_JO' : 'en_US'} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href={lang === 'ar'
+        ? 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;600;700&family=Montserrat:wght@700;800&display=swap'
+        : 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap'}
+    />
+
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="skip-link">{UI[lang].skip}</a>
+    <Header lang={lang} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <div class="demo-ribbon" lang={lang}>{UI[lang].demo} <a href="https://motasem.ai" target="_blank" rel="noopener">motasem.ai</a></div>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const c = {
+  en: {
+    metaTitle: 'Food Safety — ISO 22000, HACCP & JFDA',
+    metaDesc:
+      'Al Majeed Plastic Industries produces food-contact packaging under an ISO 22000 food-safety management system with HACCP, approved by the Jordan Food & Drug Administration.',
+    eyebrow: 'Food safety',
+    title: 'Your product touches our plastic first',
+    lede: 'Water, laban, juice, tahini, oil — when the container touches food, the factory has to be run like a food business. Ours is.',
+    certsEyebrow: 'Certified',
+    certsTitle: 'Three approvals behind every food container',
+    certs: [
+      { code: 'ISO 22000', title: 'Food-safety management', text: 'An international standard for organisations in the food chain — including the people who make its packaging.' },
+      { code: 'HACCP', title: 'Hazard analysis & critical control points', text: 'Risks are identified at each step of production and controlled before they reach your product.' },
+      { code: 'JFDA', title: 'Jordan Food & Drug Administration', text: 'Our food-contact packaging is approved by the national food and drug authority.' },
+    ],
+    meansEyebrow: 'What it means for you',
+    meansTitle: 'Easier audits, fewer questions from your buyers',
+    means: [
+      'Packaging you can name with confidence in your own food-safety file',
+      'A supplier that already speaks the language of HACCP audits',
+      'Certificates you can pass on to export buyers in Saudi Arabia, Qatar, Iraq and Palestine',
+      'One standard across food, dairy, beverage and medical containers',
+    ],
+    imgAlt: 'Quality inspector checking clear PET bottles on a light table',
+    ctaTitle: 'Need certificates for your audit?',
+    ctaText: 'Ask our sales team for current copies of our food-safety certificates along with your quote.',
+  },
+  ar: {
+    metaTitle: 'سلامة الغذاء — ISO 22000 و HACCP والغذاء والدواء',
+    metaDesc:
+      'المجيد للصناعات البلاستيكية تصنع عبوات ملامسة للغذاء ضمن نظام إدارة سلامة الغذاء ISO 22000 مع HACCP، وبموافقة المؤسسة العامة للغذاء والدواء.',
+    eyebrow: 'سلامة الغذاء',
+    title: 'منتجك بيلمس بلاستيكنا قبل ما يلمس زبونك',
+    lede: 'مي، لبن، عصير، طحينة، زيت — لما العبوة بتلامس الأكل، لازم المصنع ينُدار كأنه مصنع أغذية. ومصنعنا هيك.',
+    certsEyebrow: 'معتمدون',
+    certsTitle: 'ثلاث اعتمادات ورا كل عبوة غذائية',
+    certs: [
+      { code: 'ISO 22000', title: 'نظام إدارة سلامة الغذاء', text: 'معيار دولي للشركات بسلسلة الغذاء — ومنهم اللي بيصنعوا عبواته.' },
+      { code: 'HACCP', title: 'تحليل المخاطر ونقاط التحكم الحرجة', text: 'المخاطر بتتحدد بكل مرحلة إنتاج وبتنضبط قبل ما توصل لمنتجك.' },
+      { code: 'JFDA', title: 'المؤسسة العامة للغذاء والدواء', text: 'عبواتنا الملامسة للغذاء معتمدة من الجهة الوطنية للغذاء والدواء.' },
+    ],
+    meansEyebrow: 'شو بيعنيلك',
+    meansTitle: 'تدقيق أسهل، وأسئلة أقل من زبائنك',
+    means: [
+      'عبوة بتقدر تذكرها بثقة بملف سلامة الغذاء الخاص فيك',
+      'مورّد بيحكي لغة تدقيق HACCP من الأساس',
+      'شهادات بتقدر تقدّمها لمشترين التصدير بالسعودية وقطر والعراق وفلسطين',
+      'معيار واحد لعبوات الأغذية والألبان والمشروبات والطبي',
+    ],
+    imgAlt: 'مراقب جودة يفحص قوارير PET شفافة على طاولة إضاءة',
+    ctaTitle: 'بتحتاج شهادات للتدقيق؟',
+    ctaText: 'اطلب من فريق المبيعات نسخ شهادات سلامة الغذاء الحالية مع عرض السعر.',
+  },
+}[lang];
+---
+
+<BaseLayout lang={lang} title={c.metaTitle} description={c.metaDesc}>
+  <PageHero eyebrow={c.eyebrow} title={c.title} lede={c.lede} image="/images/factory/qc.webp" />
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading eyebrow={c.certsEyebrow} title={c.certsTitle} />
+    <ul class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        c.certs.map((cert) => (
+          <li class="relative overflow-hidden rounded-2xl border border-line bg-white p-7 shadow-sm">
+            <span class="absolute inset-x-0 top-0 h-1 bg-aqua" aria-hidden="true" />
+            <p class="font-display text-3xl font-extrabold text-navy" dir="ltr">{cert.code}</p>
+            <h3 class="mt-3 text-base font-bold text-aqua-dark">{cert.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink/70">{cert.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div>
+        <SectionHeading eyebrow={c.meansEyebrow} title={c.meansTitle} align="start" />
+        <ul class="mt-8 space-y-3">
+          {
+            c.means.map((m) => (
+              <li class="flex items-start gap-3 text-base text-ink/80">
+                <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-aqua-light text-aqua-dark">
+                  <Icon name="check" class="h-4 w-4" />
+                </span>
+                <span>{m}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <img src="/images/factory/qc.webp" alt={c.imgAlt} width="1200" height="900" loading="lazy" class="w-full rounded-2xl object-cover shadow-lg" />
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={c.ctaTitle} text={c.ctaText} />
+</BaseLayout>

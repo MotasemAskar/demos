@@ -1,0 +1,37 @@
+---
+import BottlePattern from './BottlePattern.astro';
+import Icon from './Icon.astro';
+import { type Lang, UI, localePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  text?: string;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const { title = t.ctaBand.title, text = t.ctaBand.text } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-navy">
+  <BottlePattern class="absolute inset-0 -z-10 h-full w-full" opacity={0.08} />
+  <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+    <h2 class="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-white/75">{text}</p>
+    <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+      <a
+        href={localePath(lang, '/contact#rfq')}
+        class="inline-flex items-center justify-center gap-2 rounded-md bg-aqua px-6 py-3 text-base font-bold text-navy-deep shadow-md transition hover:bg-white"
+      >
+        {t.cta}
+        <Icon name="arrow-right" class="h-4 w-4 rtl:rotate-180" />
+      </a>
+      <a
+        href={localePath(lang, '/contact?type=sample#rfq')}
+        class="inline-flex items-center justify-center gap-2 rounded-md border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+      >
+        {t.sample}
+      </a>
+    </div>
+  </div>
+</section>

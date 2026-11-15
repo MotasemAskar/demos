@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  /* Al Majeed demo palette — clear-PET aqua on industrial navy */
+  --color-aqua: #22b5c9;
+  --color-aqua-light: #e2f5f8;
+  --color-aqua-dark: #0b6c7a; /* text-safe aqua (AA on white) */
+  --color-navy: #0b2545;
+  --color-navy-deep: #061a33;
+  --color-teal: #0a3d4a;
+  --color-mist: #f3f8fa;
+  --color-line: #dbe7ec;
+  --color-ink: #111827;
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Montserrat", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, "Noto Naskh Arabic", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Arabic pages: Arabic webfont everywhere, a touch more line-height */
+html[lang="ar"] body {
+  font-family: var(--font-arabic);
+  line-height: 1.75;
+}
+html[lang="ar"] .font-display {
+  font-family: var(--font-arabic);
+}
+/* Latin-only brand wordmark keeps its geometric face in both languages */
+.wordmark {
+  font-family: var(--font-display) !important;
+  letter-spacing: 0.01em;
+}
+/* Tracking hurts Arabic letter joining */
+html[lang="ar"] .tracking-widest,
+html[lang="ar"] .tracking-wider,
+html[lang="ar"] .tracking-wide,
+html[lang="ar"] .tracking-tight {
+  letter-spacing: 0;
+}
+html[lang="ar"] .uppercase {
+  text-transform: none;
+}
+
+::selection {
+  background-color: var(--color-aqua);
+  color: var(--color-navy-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-aqua-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 0.5rem;
+  top: -100%;
+  z-index: 100;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.375rem 0.375rem;
+  transition: top 120ms ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Visible placeholder marker for missing real data */
+.placeholder-data {
+  background: #fff7d6;
+  border: 1px dashed #d4a800;
+  color: #7a6200;
+  border-radius: 0.25rem;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.85em;
+  font-style: normal;
+}
+
+/* Brand rule — a "fill line": aqua liquid level over a clear-plastic band */
+.color-rule {
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-aqua) 0 62%, #9adbe5 62% 63%, #cfeef3 63% 100%);
+}
+
+/* Demo ribbon (prospect demo only) */
+.demo-ribbon {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 60;
+  background: #111827;
+  color: #e5e7eb;
+  font-size: 12.5px;
+  text-align: center;
+  padding: 6px 10px;
+}
+.demo-ribbon a { color: #7dd3fc; }
+body { padding-bottom: 30px; }
+
+/* Scrollable wide tables on phones */
+.table-scroll {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

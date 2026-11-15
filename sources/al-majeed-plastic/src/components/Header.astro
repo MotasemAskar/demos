@@ -1,0 +1,125 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { type Lang, UI, localePath, basePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const other: Lang = lang === 'en' ? 'ar' : 'en';
+
+const current = basePath(Astro.url.pathname);
+const isActive = (href: string) => (href === '/' ? current === '/' : current.startsWith(href));
+const switchHref = localePath(other, current);
+---
+
+<header class="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
+  <div class="color-rule" aria-hidden="true"></div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between gap-3 lg:h-20">
+      <a href={localePath(lang, '/')} class="shrink-0" aria-label="Al Majeed Plastic Industries — home">
+        <Logo />
+      </a>
+
+      <nav class="hidden lg:block" aria-label={lang === 'ar' ? 'القائمة الرئيسية' : 'Main navigation'}>
+        <ul class="flex items-center gap-1">
+          {
+            t.nav.map((item) => (
+              <li>
+                <a
+                  href={localePath(lang, item.href)}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  class:list={[
+                    'relative rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    isActive(item.href)
+                      ? 'font-semibold text-navy after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-aqua'
+                      : 'text-ink/70 hover:bg-mist hover:text-navy',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          href={switchHref}
+          hreflang={other}
+          lang={other}
+          aria-label={t.switchAria}
+          class="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1.5 text-sm font-semibold text-navy transition hover:border-aqua hover:bg-aqua-light"
+        >
+          <Icon name="languages" class="h-4 w-4" />
+          <span>{t.switchLabel}</span>
+        </a>
+        <a
+          href={localePath(lang, '/contact#rfq')}
+          class="hidden items-center rounded-md bg-navy px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-deep sm:inline-flex"
+        >
+          {t.cta}
+        </a>
+        <button
+          id="menu-toggle"
+          type="button"
+          class="inline-flex items-center justify-center rounded-md p-2 text-navy hover:bg-mist lg:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="sr-only">{t.menu}</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav id="mobile-menu" class="hidden border-t border-line bg-white lg:hidden" aria-label={lang === 'ar' ? 'قائمة الجوال' : 'Mobile navigation'}>
+    <ul class="space-y-1 px-4 py-3">
+      {
+        t.nav.map((item) => (
+          <li>
+            <a
+              href={localePath(lang, item.href)}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'block rounded-md px-3 py-2.5 text-base font-medium',
+                isActive(item.href) ? 'bg-aqua-light font-semibold text-navy' : 'text-ink/80 hover:bg-mist hover:text-navy',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-2">
+        <a
+          href={localePath(lang, '/contact#rfq')}
+          class="block rounded-md bg-navy px-3 py-2.5 text-center text-base font-semibold text-white hover:bg-navy-deep"
+        >
+          {t.cta}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden', expanded);
+    iconOpen?.classList.toggle('hidden', !expanded);
+    iconClose?.classList.toggle('hidden', expanded);
+  });
+</script>

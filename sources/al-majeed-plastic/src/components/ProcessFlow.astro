@@ -1,0 +1,94 @@
+---
+/**
+ * Mould shop → two moulding processes → finished containers.
+ * Plain HTML (not SVG) so it reflows on phones and mirrors itself in RTL.
+ */
+import Icon from './Icon.astro';
+import { type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  class?: string;
+}
+const { lang, class: className = '' } = Astro.props;
+
+const t = {
+  en: {
+    resin: { title: 'Resin', text: 'PET · HDPE · PE' },
+    mould: { title: 'Mould shop', text: 'Moulds designed and built in-house' },
+    paths: [
+      { icon: 'zap', title: 'Injection moulding', out: ['PET preforms', 'Jars & tubs'] },
+      { icon: 'wind', title: 'Blow moulding', out: ['Bottles', 'Gallons & containers'] },
+    ],
+    qc: { title: 'Food-safe QC', text: 'ISO 22000 · HACCP' },
+    out: { title: 'Your filling line', text: 'Palletized and delivered' },
+  },
+  ar: {
+    resin: { title: 'المادة الخام', text: 'PET · HDPE · PE' },
+    mould: { title: 'قسم القوالب', text: 'قوالب تُصمَّم وتُصنع داخل المصنع' },
+    paths: [
+      { icon: 'zap', title: 'الحقن', out: ['بريفورم PET', 'برطمانات وعلب'] },
+      { icon: 'wind', title: 'النفخ', out: ['قوارير', 'جالونات وعبوات'] },
+    ],
+    qc: { title: 'فحص سلامة الغذاء', text: 'ISO 22000 · HACCP' },
+    out: { title: 'خط التعبئة عندك', text: 'على طبالي وتوصيل' },
+  },
+}[lang];
+
+const box = 'rounded-2xl bg-white/5 p-5 ring-1 ring-white/10';
+const arrow = 'flex items-center justify-center text-aqua';
+---
+
+<div class:list={['grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1.6fr_auto_1fr] lg:items-center', className]}>
+  <div class="space-y-4">
+    <div class={box}>
+      <p class="text-sm font-bold text-white">{t.resin.title}</p>
+      <p class="mt-1 text-sm text-white/60" dir="ltr">{t.resin.text}</p>
+    </div>
+    <div class="rounded-2xl bg-aqua/15 p-5 ring-1 ring-aqua/40">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-aqua text-navy-deep"><Icon name="cog" class="h-5 w-5" /></span>
+        <p class="text-sm font-bold text-white">{t.mould.title}</p>
+      </div>
+      <p class="mt-2 text-sm text-white/70">{t.mould.text}</p>
+    </div>
+  </div>
+
+  <div class={arrow} aria-hidden="true"><Icon name="arrow-right" class="h-7 w-7 rotate-90 lg:rotate-0 rtl:lg:rotate-180" /></div>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {
+      t.paths.map((p) => (
+        <div class={box}>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-aqua"><Icon name={p.icon} class="h-5 w-5" /></span>
+            <p class="text-base font-bold text-white">{p.title}</p>
+          </div>
+          <ul class="mt-4 space-y-2">
+            {p.out.map((o) => (
+              <li class="flex items-center gap-2 text-sm text-white/75">
+                <span class="h-1.5 w-1.5 rounded-full bg-aqua" />
+                {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+    <div class={`${box} sm:col-span-2 flex items-center gap-3`}>
+      <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-aqua"><Icon name="shield-check" class="h-5 w-5" /></span>
+      <div>
+        <p class="text-sm font-bold text-white">{t.qc.title}</p>
+        <p class="text-sm text-white/60" dir="ltr">{t.qc.text}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class={arrow} aria-hidden="true"><Icon name="arrow-right" class="h-7 w-7 rotate-90 lg:rotate-0 rtl:lg:rotate-180" /></div>
+
+  <div class="rounded-2xl bg-white p-5 text-center shadow-lg">
+    <span class="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-xl bg-aqua-light text-aqua-dark"><Icon name="truck" class="h-6 w-6" /></span>
+    <p class="mt-3 text-base font-bold text-navy">{t.out.title}</p>
+    <p class="mt-1 text-sm text-ink/60">{t.out.text}</p>
+  </div>
+</div>

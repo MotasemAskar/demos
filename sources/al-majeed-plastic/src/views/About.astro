@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { COMPANY, FACTS } from '../config';
+import { type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const markets = FACTS.markets[lang].join(lang === 'ar' ? '، ' : ', ');
+
+const c = {
+  en: {
+    metaTitle: 'About Us — A Jordanian Packaging Factory Since 1991',
+    metaDesc:
+      'Al Majeed Plastic Industries is a family-founded Jordanian manufacturer of PET and HDPE packaging in North Marka, Amman, operating since 1991.',
+    eyebrow: 'About us',
+    title: 'Founded by engineers. Built by a family.',
+    lede: `${COMPANY.legalEn} has been moulding plastic packaging in Amman since 1991 — started by engineers and grown by their family into a plant that makes its own moulds.`,
+    storyEyebrow: 'Our story',
+    storyTitle: 'Three decades of Jordanian packaging',
+    story: [
+      'We started in 1991 with one idea: Jordanian producers deserve packaging made next door, to the standard they would expect from an import.',
+      'Over the years the plant grew around that idea — adding PET preform injection, blow moulding for bottles and gallons, and a dedicated mould-making base so we could build the shapes our customers asked for.',
+      `Today our containers carry water, dairy, detergents, oils, tahini and medical liquids for producers in Jordan and in ${markets}.`,
+    ],
+    imgAlt: 'Production hall with blow-moulding machines',
+    valuesEyebrow: 'How we work',
+    valuesTitle: 'What our customers can count on',
+    values: [
+      { icon: 'factory', title: 'A real factory', text: 'We mould what we sell — no trading, no relabelling.' },
+      { icon: 'shield-check', title: 'Food-safe by system', text: 'ISO 22000, HACCP and JFDA approval behind our food containers.' },
+      { icon: 'cog', title: 'Our own moulds', text: 'A mould-making base inside the plant for custom shapes.' },
+      { icon: 'handshake', title: 'Family business', text: 'A family name stands behind every order we ship.' },
+    ],
+    timelineEyebrow: 'Milestones',
+    timelineTitle: 'How we got here',
+    timeline: [
+      { year: '1991', text: 'Al Majeed Plastic Industries is founded in Amman.' },
+      { year: '', text: 'Mould-making base established inside the plant.' },
+      { year: '', text: 'ISO 22000 and HACCP food-safety system in place; JFDA approval.' },
+      { year: lang === 'ar' ? 'اليوم' : 'Today', text: `Supplying producers across Jordan and in ${markets}.` },
+    ],
+  },
+  ar: {
+    metaTitle: 'من نحن — مصنع عبوات أردني منذ 1991',
+    metaDesc:
+      'المجيد للصناعات البلاستيكية — مصنع أردني عائلي لعبوات PET و HDPE في ماركا الشمالية، عمّان، يعمل منذ 1991.',
+    eyebrow: 'من نحن',
+    title: 'أسّسها مهندسون. وكبّرتها عيلة.',
+    lede: `${COMPANY.legalAr} بتصنع العبوات البلاستيكية في عمّان من 1991 — بدأها مهندسون وكبّرتها عيلتهم لمصنع بيصنع قوالبه بنفسه.`,
+    storyEyebrow: 'قصتنا',
+    storyTitle: 'أكثر من ثلاثين سنة عبوات أردنية',
+    story: [
+      'بدأنا سنة 1991 بفكرة وحدة: المنتج الأردني بيستاهل عبوة مصنوعة جنبه، بنفس المستوى اللي بيتوقعه من المستورد.',
+      'مع السنين كبر المصنع حوالين هالفكرة — أضفنا حقن بريفورم PET، ونفخ القوارير والجالونات، وقسم مختص بتصنيع القوالب مشان نصنع الأشكال اللي بيطلبها زبائننا.',
+      `اليوم عبواتنا بتحمل المي والألبان والمنظفات والزيوت والطحينة والسوائل الطبية لمنتجين بالأردن وفي ${markets}.`,
+    ],
+    imgAlt: 'صالة الإنتاج مع ماكينات النفخ',
+    valuesEyebrow: 'كيف بنشتغل',
+    valuesTitle: 'شو بيقدر يعتمد عليه زبوننا',
+    values: [
+      { icon: 'factory', title: 'مصنع حقيقي', text: 'بنصنع اللي بنبيعه — بدون تجارة ولا إعادة تغليف.' },
+      { icon: 'shield-check', title: 'سلامة غذاء بنظام', text: 'ISO 22000 و HACCP وموافقة الغذاء والدواء ورا عبواتنا الغذائية.' },
+      { icon: 'cog', title: 'قوالبنا من عنا', text: 'قسم تصنيع قوالب داخل المصنع للأشكال الخاصة.' },
+      { icon: 'handshake', title: 'شركة عائلية', text: 'اسم عيلة واقف ورا كل طلب بنشحنه.' },
+    ],
+    timelineEyebrow: 'محطات',
+    timelineTitle: 'كيف وصلنا لهون',
+    timeline: [
+      { year: '1991', text: 'تأسيس المجيد للصناعات البلاستيكية في عمّان.' },
+      { year: '', text: 'إنشاء قسم تصنيع القوالب داخل المصنع.' },
+      { year: '', text: 'تطبيق نظام سلامة الغذاء ISO 22000 و HACCP، وموافقة الغذاء والدواء.' },
+      { year: 'اليوم', text: `نورّد لمنتجين بكل الأردن وفي ${markets}.` },
+    ],
+  },
+}[lang];
+---
+
+<BaseLayout lang={lang} title={c.metaTitle} description={c.metaDesc}>
+  <PageHero eyebrow={c.eyebrow} title={c.title} lede={c.lede} image="/images/about/hall.webp" />
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow={c.storyEyebrow} title={c.storyTitle} align="start" />
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-ink/75">
+          {c.story.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+      <img src="/images/about/hall.webp" alt={c.imgAlt} width="1600" height="1000" loading="lazy" class="w-full rounded-2xl object-cover shadow-lg" />
+    </div>
+  </section>
+
+  <section class="bg-mist">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionHeading eyebrow={c.valuesEyebrow} title={c.valuesTitle} />
+      <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          c.values.map((v) => (
+            <li class="rounded-2xl border border-line bg-white p-6 shadow-sm">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-aqua-light text-aqua-dark">
+                <Icon name={v.icon} class="h-5 w-5" />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-navy">{v.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink/70">{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading eyebrow={c.timelineEyebrow} title={c.timelineTitle} />
+    <ol class="relative mt-12 space-y-8 border-s-2 border-aqua/40 ps-8">
+      {
+        c.timeline.map((t) => (
+          <li class="relative">
+            <span class="absolute -start-[41px] top-1 h-4 w-4 rounded-full border-4 border-white bg-aqua shadow" aria-hidden="true" />
+            {t.year && <p class="font-display text-xl font-extrabold text-navy">{t.year}</p>}
+            <p class="mt-1 text-base text-ink/75">{t.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <CtaBand lang={lang} />
+</BaseLayout>
